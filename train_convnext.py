@@ -1,16 +1,9 @@
-"""Skrip Pelatihan ConvNeXt-Tiny Pre-trained untuk Studio 2 (IF25-40401).
-
-Fitur:
-  - Otomatis menggunakan akselerasi GPU (CUDA: RTX 3060).
-  - Menggunakan bobot pretrained ConvNeXt-Tiny (ImageNet-1K).
-  - Augmentasi citra yang kokoh (RandomResizedCrop, Flip, Rotation, ColorJitter).
-  - Menghitung metrik Macro-F1 secara langsung di setiap epoch.
-  - Otomatis menyimpan checkpoint terbaik ke submission/model.pth berdasarkan Macro-F1.
-"""
 import argparse
+import os
 import random
 import shutil
 import time
+import numpy as np
 from pathlib import Path
 
 import torch
@@ -22,6 +15,16 @@ from submission.model import NUM_CLASSES, get_model, get_transform
 
 CLASSES = ["botol_plastik", "gelas_plastik", "kertas_kardus", "saset_kemasan", "styrofoam"]
 
+def set_seed(seed=42):
+  random.seed(seed)
+  os.environ["PYTHONHASHSEED"] = str(seed)
+  np.random.seed(seed)
+  torch.manual_seed(seed)
+  if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+  if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        torch.mps.manual_seed(seed)
 
 def calculate_metrics(y_true, y_pred, k=NUM_CLASSES):
     """Menghitung Macro-F1 dan Akurasi sesuai dengan skrip resmi evaluate.py."""
@@ -70,7 +73,7 @@ def main():
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     args = parser.parse_args()
 
-    torch.manual_seed(args.seed)
+    set_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"--> Menggunakan Device: {device.upper()}")
     if device == "cuda":

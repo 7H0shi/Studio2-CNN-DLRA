@@ -1,0 +1,15 @@
+# Dataset (Dilarang diunggah ke repositori publik)
+train/
+my_train/
+my_val/
+*.zip
+
+# Python Cache
+__pycache__/
+*/__pycache__/
+*.pyc
+
+# Local Environment
+.env
+venv/
+.venv/

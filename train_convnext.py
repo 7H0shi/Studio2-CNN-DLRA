@@ -10,6 +10,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
+from datareader import TrashDataset
 
 from submission.model import NUM_CLASSES, get_model, get_transform
 
@@ -92,8 +93,8 @@ def main():
     ])
     val_tf = get_transform()
 
-    tr_ds = datasets.ImageFolder(tr_dir, train_tf)
-    va_ds = datasets.ImageFolder(va_dir, val_tf)
+    tr_ds = TrashDataset(tr_dir, train_tf)
+    va_ds = TrashDataset(va_dir, val_tf)
     print(f"--> Dataset: Train = {len(tr_ds)} citra | Val = {len(va_ds)} citra | Kelas = {len(tr_ds.classes)}")
 
     # Gunakan num_workers=2 untuk Windows DataLoader yang cepat

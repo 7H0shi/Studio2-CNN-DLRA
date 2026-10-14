@@ -1,4 +1,4 @@
-# Studio 2 — Klasifikasi Sampah · Kelompok 10
+# Studio 2 — Klasifikasi Sampah · Kelompok 10 - Alcyon
 
 Deep Learning (IF25-40401) · Teknik Informatika ITERA · Semester Ganjil 2026/2027
 

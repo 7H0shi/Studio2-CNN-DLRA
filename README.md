@@ -27,7 +27,7 @@ Deep Learning (IF25-40401) · Teknik Informatika ITERA · Semester Ganjil 2026/2
 | Putaran | Commit | Macro-F1 (split validasi lokal) | Macro-F1 (diumumkan asisten) |
 |---|---|---|---|
 | Preview 1 (14 Okt) | c26b867 | 0.9640 | 0.9474 |
-| Preview 2 (21 Okt) | [commit-preview-2] | 0.9725 | |
+| Preview 2 (21 Okt) | f954e22 | 0.9725 | |
 | Final (25 Okt) | | | |
 
 Catatan eksperimen singkat (apa yang dicoba, apa yang berhasil/gagal):
